@@ -1,0 +1,47 @@
+body{
+    overflow:hidden;
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+    color: darkblue;
+    background-image: url(../images/bubbles.jpeg);
+    height: 100px;
+    padding-top: 15px;
+    margin-top:0px;
+    margin-bottom:0px;
+}
+
+
+#background{
+    background-image: url("../images/reef.jpeg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 660px;
+}
+
+.panel-default{
+    margin-left: 30px;
+    margin-right:30px;
+    margin-top:30px;
+}
+
+h2{
+    text-align: center;
+}
+
+.panel-title{
+    color:red;
+}
+
+#guessesRemaining{
+    padding-left:25px;
+}
+
+.guessBlock{
+    width:20%;
+    height:100%;
+}
+
+

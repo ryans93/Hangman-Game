@@ -13,6 +13,13 @@ h1{
     margin-bottom:0px;
 }
 
+#guessesRemaining{
+    background-image: url(../images/Skull.png);
+    background-size: 100% 100%;
+    height:150px;
+    position:relative;
+    z-index:1;
+}
 
 #background{
     background-image: url("../images/reef.jpeg");
@@ -32,16 +39,68 @@ h2{
 }
 
 .panel-title{
-    color:red;
-}
-
-#guessesRemaining{
-    padding-left:25px;
+    color:blue;
 }
 
 .guessBlock{
-    width:20%;
-    height:100%;
+    width:100%;
+    height:20%;
+    background-color: white;
+    z-index:10;
+    position:absolute;
+    top:0px;
+    left:0px;
 }
 
+#block2{
+    top:30px;
+}
 
+#block3{
+    top:60px;
+}
+
+#block4{
+    top:90px;
+}
+
+#block5{
+    top:120px;
+}
+
+#word{
+    font-weight: bold;
+    font-size:28px;
+    text-align: center;
+    color: blue;
+    letter-spacing:15px;
+    width:100%;
+    word-wrap: break-word;
+}
+
+#lettersGuessed{
+    font-weight: bold;
+    color: blue;
+    letter-spacing:10px;
+    width:100%;
+    word-wrap: break-word;
+}
+
+#animalFactBox, #animalImageBox{
+    opacity: 0;
+}
+
+#facts-box{
+    overflow:scroll;
+}
+
+li{
+    color:blue;
+    font-size: 18px;
+    padding-bottom:5px;
+}
+
+ul{
+    padding-left:15px;
+    list-style: disc;
+}

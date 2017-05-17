@@ -25,7 +25,10 @@ h1{
     background-image: url("../images/reef.jpeg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    height: 660px;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    left: 0px;
 }
 
 .panel-default{

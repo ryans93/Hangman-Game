@@ -76,6 +76,7 @@ h2{
     letter-spacing:15px;
     width:100%;
     word-wrap: break-word;
+    background-color:lightblue;
 }
 
 #lettersGuessed{
@@ -84,6 +85,8 @@ h2{
     letter-spacing:10px;
     width:100%;
     word-wrap: break-word;
+    background-color:lightblue;
+
 }
 
 #animalFactBox, #animalImageBox{
@@ -91,7 +94,10 @@ h2{
 }
 
 #facts-box{
-    overflow:scroll;
+    overflow-y:auto;
+    background-color:lightblue;
+    padding-bottom: 5px;
+
 }
 
 li{
@@ -100,7 +106,20 @@ li{
     padding-bottom:5px;
 }
 
+#fact3{
+    padding-bottom:0px;
+}
+
 ul{
     padding-left:15px;
     list-style: disc;
+}
+
+#animalImage{
+    max-height: 325px;
+    padding:0 0 0 0;
+}
+
+img{
+    max-height: 325px;
 }

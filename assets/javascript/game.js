@@ -16,32 +16,20 @@ var animals = [
     { name: "KILLER-WHALE", imgSrc: "assets/images/orca.jpg", fact1: "Orcas are actually members of the dolphin family", fact2: "They can live between 50-80 years", fact3: "Orcas hunt in pods of up to 40 individuals" }
 ];
 
-var random = Math.floor(Math.random() * 14);
+var random = Math.floor(Math.random() * 15);
 var selectedAnimal = animals[random];
 var guessString = "";
 var guesses = 0;
 var lettersRevealed = 0;
 var lettersGuessed = [];
-var counter = 0;
+var found = false;
 
-function setCharAt(str, index, chr) {
-    counter++;
-    return str.substr(0, index) + chr + str.substr(index + 1);
-}
-
-function searchLettersGuessed(lettersGuessed, key) {
-    for (var i = 0; i < lettersGuessed.length; i++) {
-        if (key === lettersGuessed[i]) {
-            return false;
-        }
-    }
-    return true;
-}
-
+// append guess string to screen as series of underscores
 for (var i = 0; i < selectedAnimal.name.length; i++) {
     if (selectedAnimal.name.charAt(i) != "-") {
         guessString = guessString.concat("_")
     }
+    // if the word contains a "-", append to screen and increase lettersRevealed since this not a letter
     else {
         guessString = guessString.concat("-")
         lettersRevealed++;
@@ -49,26 +37,31 @@ for (var i = 0; i < selectedAnimal.name.length; i++) {
 }
 document.getElementById("word").append(guessString);
 
-
-
+// handle user input
 document.onkeyup = function (event) {
+    // user can only enter upper/lowercase letter
     if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 97 && event.keyCode <= 122)) {
+        // allow input if letter not yet guessed, and user has not yet won or lost
         if (lettersRevealed < selectedAnimal.name.length && guesses < 5 && searchLettersGuessed(lettersGuessed, event.key.toUpperCase())) {
             var letter = event.key.toUpperCase();
             lettersGuessed.push(letter);
+            // search through animal name for letter guessed by user
             for (var i = 0; i < selectedAnimal.name.length; i++) {
+                // replace "_" with correctly guessed letter and increment lettersRevealed
                 if (selectedAnimal.name.charAt(i) === letter) {
                     guessString = setCharAt(guessString, i, letter);
                     lettersRevealed++;
                 }
             }
-            if (counter == 0) {
+            if (!found) {
                 guesses++;
             }
-            counter = 0;
+            // reset found to false
+            found = false;
             document.getElementById("word").innerHTML = "";
             document.getElementById("word").append(guessString);
             document.getElementById("lettersGuessed").append(letter);
+            // reveal part of skull picture for each wrong guess
             if (guesses == 1) {
                 document.getElementById("block1").style.opacity = 0;
             }
@@ -87,22 +80,42 @@ document.onkeyup = function (event) {
         }
     }
     document.getElementById("Guesses-Remaining").innerHTML = "Guesses Remaining: " + (5 - guesses);
+    // user has lost
     if (guesses == 5) {
         document.getElementById("Guesses-Remaining").innerHTML = "YOU LOSE!";
         document.getElementById('Guesses-Remaining').style.color = "red";
+        showAnimal();
     }
+    // user has won
     if (lettersRevealed == selectedAnimal.name.length) {
         document.getElementById("Guesses-Remaining").innerHTML = "YOU WON!";
+        showAnimal();
+    }
 
+    // return string with character inserted into specified index, sets found to true
+    function setCharAt(str, index, chr) {
+        found = true;
+        return str.substr(0, index) + chr + str.substr(index + 1);
+    }
+
+    // return true if key not found in lettersGuessed array
+    function searchLettersGuessed(lettersGuessed, key) {
+        for (var i = 0; i < lettersGuessed.length; i++) {
+            if (key === lettersGuessed[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // function to show animal picture and facts box at end of game
+    function showAnimal() {
         document.getElementById("animalImageBox").style.opacity = 1;
         document.getElementById("image-box-title").innerHTML = "It was a " + selectedAnimal.name + "!";
-
-        var picture=document.createElement("img");
+        var picture = document.createElement("img");
         picture.src = selectedAnimal.imgSrc;
-        console.log(picture.src);
         picture.setAttribute("width", "100%");
         document.getElementById("animalImage").appendChild(picture);
-
         document.getElementById('animalFactBox').style.opacity = 1;
         document.getElementById("fact-box-title").innerHTML = selectedAnimal.name + " FUN FACTS";
         document.getElementById("fact1").innerHTML = selectedAnimal.fact1;
@@ -110,5 +123,3 @@ document.onkeyup = function (event) {
         document.getElementById("fact3").innerHTML = selectedAnimal.fact3;
     }
 }
-
-

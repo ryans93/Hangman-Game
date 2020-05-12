@@ -7,6 +7,8 @@ A fun, ocean themed Hangman game. Figure out the word and learn some cool trivia
 
 ![Lose Screenshot](./screenshots/lose.png)
 
+[Live Demo](https://ryans93.github.io/Hangman-Game/)
+
 ### Technologies Used
 This app is built with:
 * HTML5
